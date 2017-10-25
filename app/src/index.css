@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: 'Century Gothic', Futura, sans-serif;
+}
+.header {
+  background-color: #f12022;
+  height: 100px;
+  padding: 20px 10%;
+  clear: both;
+}
+
+.header .marvel-logo img {
+  height: 60px;
+  float: left;
+}
+
+.header .search {
+  float: right;
+}
+
+.search {
+  margin-top: 12px;
+  position: relative;
+}
+
+.search input {
+  border-radius: 10px;
+  color: #dbd6d9;
+  height: 16px;
+  font-size: 14px;
+  width: 250px;
+  padding: 16px;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
+}
+
+.search input:focus {
+  outline: 0;
+}
+
+.search img.loading {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  right: 16px;
+  top: 10px;
+}
+.search img.character {
+  border-radius: 50%;
+  padding: 15px;
+  width: 120px;
+  height: 120px;
+}
+
+.search ul {
+  min-height: 120px;
+  max-height: 600px;
+  overflow: scroll;
+  position: absolute;
+  width: 500px;
+  right: 0;
+  list-style-type: none;
+  top: 25px;
+  border: 1px solid #dbd6d9;
+  border-radius: 4px;
+  padding: 0;
+  background-color: #dbd6d9;
+}
+
+.search ul li.list {
+  cursor: pointer;
+  height: 120px;
+  display: flex;
+  border-bottom: 1px solid gray;
+}
+.search ul li.list.empty {
+  cursor: unset;
+  text-align: center;
+  justify-content: center;
+}
+
+.search ul li.list.empty h3 {
+  color: #f12022;
+}
+.search ul li.list.empty:hover {
+  background-color: transparent;
+}
+
+.search ul li.list:hover {
+  background-color: #deb8b8;
+}
+
+.search ul li.list:hover h3 {
+  color: #f12022;
+}
+
+.search ul li.list:last-child {
+  border-bottom: none;
+}
+
+.search ul li.list div.meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1em;
+}
+.search ul li.list h3 {
+  margin: 0;
+}
+
+.search ul li.list h3.no-description {
+  flex: 0;
+}
+
+.search ul li.list p.description {
+  font-size: 12px;
+  margin: 0;
+  overflow: hidden;
+  display: inline-block;
+  display: -webkit-box;
+  /* post-css issue https://github.com/postcss/autoprefixer/issues/776 */
+  /* autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+  -webkit-line-clamp: 2;
+}
+
+@media (max-width: 500px) {
+  .search input {
+    width: 80%;
+    margin: 0 10%;
+  }
+
+  .search ul {
+    width: 80%;
+    margin: 5% 10%;
+    min-height: 90px;
+    max-height: 450px;
+  }
+  .search ul li.list {
+    height: 90px;
+  }
+  .search img.character {
+    border-radius: 50%;
+    width: 90px;
+    height: 90px;
+  }
+
+  .search img.loading {
+    right: 50px;
+  }
+}
