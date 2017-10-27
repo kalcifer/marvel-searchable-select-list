@@ -1,7 +1,9 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import App from '../app';
+import fetchMock from 'fetch-mock';
 import modifiedResponse from '../../__mocks__/modified_response';
+import response from '../../__mocks__/characters_response';
 
 it('renders without crashing', () => {
   shallow(<App />);
@@ -55,4 +57,37 @@ it('changes width value on resize', () => {
     expect(wrapper.instance().state.width).toEqual(400);
   }, 0);
   global.innerWidth = width;
+});
+
+it('triggers handleChange', () => {
+  const changeEvt = { target: { value: 'wolverine' }, persist: () => {} };
+  const wrapper = shallow(<App />);
+  wrapper
+    .find('Select')
+    .first()
+    .simulate('change', changeEvt);
+  setTimeout(() => {
+    expect(wrapper.instance().state.value).toEqual('wolverine');
+  }, 0);
+});
+
+it('triggers handleResultsClick', () => {
+  fetchMock.get(
+    `http://localhost:1111/characters?nameStartsWith=wolverine`,
+    response
+  );
+  const log = console.log;
+  console['log'] = jest.fn();
+  const changeEvt = { target: { value: 'wolverine' }, persist: () => {} };
+  const wrapper = shallow(<App />);
+  wrapper.find('Select').simulate('change', changeEvt);
+
+  setTimeout(() => {
+    expect(wrapper.instance().state.results).toEqual(modifiedResponse);
+    wrapper.find('Results').simulate('click', 'Wolf Club');
+
+    expect(console.log.mock.calls.length).toBe(1);
+    expect(console.log.mock.calls[0][0]).toBe('Wolf Cub');
+    console.log = log;
+  }, 0);
 });
