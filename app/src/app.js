@@ -80,7 +80,7 @@ class App extends Component {
                   data={results}
                   query={value}
                   isMobile={isMobile}
-                  handleResultsClick={name => handleResultsClick(name)}
+                  handleResultsClick={name => this.handleResultsClick(name)}
                 />
               )}
             </Select>
@@ -97,7 +97,7 @@ class App extends Component {
                 data={results}
                 query={value}
                 isMobile={isMobile}
-                handleResultsClick={name => handleResultsClick(name)}
+                handleResultsClick={name => this.handleResultsClick(name)}
               />
             )}
           </Select>
