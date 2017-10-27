@@ -6,12 +6,14 @@ export const fetchCharactersWithName = query =>
     .then(res => res.json())
     .then(_prop('results'))
     .then(
-      _map(({ id, name, description, thumbnail }) => {
-        return {
-          id,
-          name,
-          thumbnail,
-          description
-        };
-      })
-    );
+      _map(({ id, name, description, thumbnail }) => ({
+        id,
+        name,
+        thumbnail,
+        description
+      }))
+    )
+    .catch(err => {
+      // return default value
+      return [];
+    });

@@ -1,15 +1,16 @@
 import React from 'react';
 
-const Results = ({ data = [], query = '', isMobile }) => (
+const Results = ({
+  data = [],
+  query = '',
+  isMobile = false,
+  handleResultsClick = () => {}
+}) => (
   <ul>
     {query.length > 0 &&
       data.length > 0 &&
       data.map(({ id, name, description, thumbnail }) => (
-        <li
-          className="list"
-          key={id}
-          onClick={() => console.log(name, description.length)}
-        >
+        <li className="list" key={id} onClick={() => handleResultsClick(name)}>
           <div>
             <img
               className="character"
